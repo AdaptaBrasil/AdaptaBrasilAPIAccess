@@ -84,8 +84,9 @@ _Ano_: Ano a que deverão corresponder os dados exibidos (2015).
 
 _Conjunto de dados_: (adaptabrasil)
 
-**url_faz_download_geometrias_dados**: faz o download de geometrias com seus dados associados, em diversos formatos:
-https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/1000/BR/null/2015/municipio/SHPz/adaptabrasil
+**url_faz_download_geometrias_dados**: faz o download de geometrias com seus dados associados, em diversos formatos.
+
+Exemplo: https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/1000/BR/null/2015/municipio/SHPz/adaptabrasil
 
 _Nome da API_: (fixo, _geometria/data_).
 
