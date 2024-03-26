@@ -14,7 +14,7 @@ Para acessar os dados do Adapta usam-se URLs que especificam qual o tipo de dado
 
 Uma das maneiras de se obter essas URLs é navegar pela plataforma com o browser em modo depuração, buscar a aba Rede (Network) e observar as URLs acessadas:
 
-![img.png](browser_debug.png)
+![img.png](chrome_debug.png)
 
 Estão indicados em vermelho as referências à URL chamada para obter dados para o preenchimento dos valores dessa tela.
 
