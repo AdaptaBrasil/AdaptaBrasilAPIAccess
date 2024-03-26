@@ -10,11 +10,26 @@ Quando abrir esse arquivo no Excel, indique o "|" como separador.
 
 ## Iniciando
 
-Para acessar os dados do Adapta usam-se URLs que especificam qual o tipo de dado a ser obtidos e algum tipo de filtro. São essas as diferentes URLs possíveis:
+Para acessar os dados do Adapta usam-se URLs que especificam qual o tipo de dado a ser obtidos e algum tipo de filtro.
+
+Uma das maneiras de se obter essas URLs é navegar pela plataforma com o browser em modo depuração, buscar a aba Rede (Network) e observar as URLs acessadas:
+
+![img.png](browser_debug.png)
+
+Estão indicados em vermelho as referências à URL chamada para obter dados para o preenchimento dos valores dessa tela.
+
+Se for clicado em na referência à URL (null na tela), será aberta uma outra aba do browser com os dados exibidos na tela.
 
 Os dados são retornados por default em formato JSON. Quando é especificado um formato, como no caso das URLs de download de dados, será feito um arquivo .zip contendo os dados no formato solicitado.
 
-https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil: acessa a hierarquia de indicadores que compõe o site. Um exemplo do retornado por essa API pode ser visto [aqui](jsonsamples%2Fhierarchy.json).
+Outra opção é executar o script **adaptaBrasilAPIEstrutura.py**. Ele pode receber os seguintes parâmetros:
+
+
+
+https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil
+
+Acessa a hierarquia de indicadores que compõe o site. Um exemplo do retornado por essa API pode ser visto [aqui](jsonsamples%2Fhierarchy.json).
+
 O parâmetro **adaptabrasil** especifica o conjunto de dados a ser acessado. Atualmente há dois conjuntos de dados: **Adapta Brasil** e **Riscos Climáticos**, que são selecionados por esse último parâmetro, respectivamente **adaptabrasil** e **riscos_climaticos**.
 
 ## Colunas do CSV
@@ -143,4 +158,3 @@ Valores:
 **unidade_medida**: unidade de medida dos valores do indicador.
 
 **cenários**: cenários possíveis para esse indicador.
-
