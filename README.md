@@ -29,8 +29,8 @@ Parâmetros:
 python AdaptaBrasilAPIAccess.py --help
 
 Parâmetros:
-  -h, --help                     mostra essa mensagem e sai<br>
-  --base_url BASE_URL            URL base de uma versão do AdaptaBrasil.<br>
+  --help                         mostra essa mensagem e sai.
+  --base_url BASE_URL            URL base de uma versão do AdaptaBrasil.
   --schema SCHEMA                schema a ser usado (adaptabrasil, impactos_economicos).<br>
   --recorte RECORTE              Recorte a ser usado nas URLs.
   --resolucao RESOLUCAO          Resolução a ser usada nas URLs.
@@ -165,11 +165,10 @@ Valores:
 
 **cenários**: cenários possíveis para esse indicador.
 
-https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil
-
 ### API de hierarquia
 
-Acessa a hierarquia de indicadores que compõe o site. Um exemplo do retornado por essa API pode ser visto [aqui](jsonsamples%2Fhierarchy.json).
+https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil
+
+Acessa a hierarquia de indicadores que compõe o site. Um exemplo do retornado por essa API pode ser visto [aqui](https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil).
 
 O parâmetro **adaptabrasil** especifica o conjunto de dados a ser acessado. Atualmente há dois conjuntos de dados: **Adapta Brasil** e **Riscos Climáticos**, que são selecionados por esse último parâmetro, respectivamente **adaptabrasil** e **riscos_climaticos**.
-
