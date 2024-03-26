@@ -19,11 +19,9 @@ O parâmetro **adaptabrasil** especifica o conjunto de dados a ser acessado. Atu
 
 ## Colunas do CSV
 
-### id:
-id do ìndicador.
+**id**: id do ìndicador.
 
-### nome: 
-Nome do indicador.
+**nome**: nome do indicador.
 
 **url_mostra_mapas_na_tela**: Exibe o portal no browser de acordo com os parâmetros indicados.
 
