@@ -2,7 +2,7 @@
 
 O que está aqui disponibilizado são recursos para se acessar os dados da plataforma usando-se scripts, automatizando a obtenção desses dados e possibilitando até que outros sites façam esse acesso de maneira dinâmica.
 
-Há um script Python, [AdaptaBrasilAPIAccess.py](AdaptaBrasilAPIAccess.py), que gera URLs exemplo de cada API existente, ou pode ser usado o CSV [adaptaBrasilAPIEstrutura.csv](adaptaBrasilAPIEstrutura.csv) como exemplo.
+Há um script Python, [AdaptaBrasilAPIAccess.py](AdaptaBrasilAPIAccess.py), que gera URLs exemplo de cada API existente, ou pode ser usado o CSV [adaptaBrasilAPIEstrutura.csv](adaptaBrasilAPIEstrutura.csv), que contém as URLs já geradas para cada indicador. Como a plataforma é constantemente atualizada, é preferível que o script seja executado e a planilha, gerada com as últimas atualizações.
 
 As colunas do CSV gerado são separadas pelo caractere "|", em vez de vírgula ou ponto-e-vírgula como é usual. Isso porque esses caracteres aparecem nos textos da então optou-se pelo "|", que normalmente não é usado em textos.
 
