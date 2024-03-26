@@ -10,6 +10,12 @@ def get_command_line_arguments():
     parser.add_argument('--schema', type=str,
                         default='adaptabrasil',
                         help='schema a ser usado (adaptabrasil, impactos_economicos).')
+    parser.add_argument('--recorte', type=str,
+                        default='BR',
+                        help='Recorte a ser usado nas URLs.')
+    parser.add_argument('--resolucao', type=str,
+                        default='municipio',
+                        help='Resolução a ser usada nas URLs.')
     parser.add_argument('--arquivo_saida', type=str,
                         default = 'adaptaBrasilAPIEstrutura.csv',
                         help='Nome do arquivo destino (csv).')
@@ -57,16 +63,16 @@ if __name__ == '__main__':
                     list_scenario.append(scenario['label'])
             if years is not None and years != []:
                 # https://sistema.adaptabrasil.mcti.gov.br/5000/1/2015/null/BR/municipio/
-                url_show_map_on_the_site = f"{args.base_url}/{indicator['id']}/1/{years[0]}/null/BR/municipio/{args.schema}"
+                url_show_map_on_the_site = f"{args.base_url}/{indicator['id']}/1/{years[0]}/null/{args.recorte}/{args.resolucao}/{args.schema}"
                 # https://sistema.adaptabrasil.dev.apps.rnp.br/api/mapa-dados/BR/municipio/1000/2015/null
-                url_getmapdata = f"https://sistema.adaptabrasil.mcti.gov.br/api/mapa-dados/BR/municipio/" \
+                url_getmapdata = f"https://sistema.adaptabrasil.mcti.gov.br/api/mapa-dados/{args.recorte}/{args.resolucao}/" \
                                  f"{indicator['id']}/{years[0]}/null/{args.schema}"
                 # https://sistema.adaptabrasil.mcti.gov.br/api/total/BR/municipio/5000/2/null
-                url_gettotal_evolucao_tendencia = f"https://sistema.adaptabrasil.mcti.gov.br/api/total/BR/municipio/" \
+                url_gettotal_evolucao_tendencia = f"https://sistema.adaptabrasil.mcti.gov.br/api/total/{args.recorte}/{args.resolucao}/" \
                                                   f"{indicator['id']}/null/{years[0]}/{args.schema}"
                 # https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/1000/BR/null/2015/municipio/SHPz
                 url_download = f"https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/{indicator['id']}/" \
-                               f"BR/null/{years[0]}/municipio/SHPz/{args.schema}"
+                               f"{args.recorte}/null/{years[0]}/{args.resolucao}/SHPz/{args.schema}"
 
                 s += f"{indicator['id']}|{indicator['name']}|"
                 s += f"{url_show_map_on_the_site}|{url_getmapdata}|{url_gettotal_evolucao_tendencia}|{url_download}|" \

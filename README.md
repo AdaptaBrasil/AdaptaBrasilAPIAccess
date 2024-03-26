@@ -2,7 +2,7 @@
 
 O que está aqui disponibilizado são recursos para se acessar os dados da plataforma usando-se scripts, automatizando a obtenção desses dados e possibilitando até que outros sites façam esse acesso de maneira dinâmica.
 
-Há um script Python, [AdaptaBrasilAPIAccess.py](AdaptaBrasilAPIAccess.py), que gera URLs exemplo de cada API existente, ou pode ser usado o CSV [adaptaBrasilAPIEstrutura.csv](adaptaBrasilAPIEstrutura.csv) como exemplo.
+Há um script Python, [AdaptaBrasilAPIAccess.py](AdaptaBrasilAPIAccess.py), que gera URLs exemplo de cada API existente, ou pode ser usado o CSV [adaptaBrasilAPIEstrutura.csv](adaptaBrasilAPIEstrutura.csv) como exemplo, que contém as URLs já geradas para cada indicador. Como a plataforma é constantemente atualizada, é preferível que o script seja executado e a planilha, gerada com as últimas atualizações. As instruções e parâmetros para se rodar o script encontram-se abaixo.
 
 As colunas do CSV gerado são separadas pelo caractere "|", em vez de vírgula ou ponto-e-vírgula como é usual. Isso porque esses caracteres aparecem nos textos da então optou-se pelo "|", que normalmente não é usado em textos.
 
@@ -22,23 +22,28 @@ Se for clicado em na referência à URL (null na tela), será aberta uma outra a
 
 Os dados são retornados por default em formato JSON. Quando é especificado um formato, como no caso das URLs de download de dados, será feito um arquivo .zip contendo os dados no formato solicitado.
 
-Outra opção é executar o script **adaptaBrasilAPIEstrutura.py**. Ele pode receber os seguintes parâmetros:
+Se a ideia for obter dados de muitos indicadores e/ou em diferentes formatos, a melhor opção é executar o script **adaptaBrasilAPIEstrutura.py**. Ele pode receber os seguintes parâmetros:
 
+Parâmetros:
+```commandline
+python AdaptaBrasilAPIAccess.py --help
 
+Parâmetros:
+  -h, --help                     mostra essa mensagem e sai<br>
+  --base_url BASE_URL            URL base de uma versão do AdaptaBrasil.<br>
+  --schema SCHEMA                schema a ser usado (adaptabrasil, impactos_economicos).<br>
+  --recorte RECORTE              Recorte a ser usado nas URLs.
+  --resolucao RESOLUCAO          Resolução a ser usada nas URLs.
+  --arquivo_saida ARQUIVO_SAIDA  Nome do arquivo destino (csv).
+```
 
-https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil
-
-Acessa a hierarquia de indicadores que compõe o site. Um exemplo do retornado por essa API pode ser visto [aqui](jsonsamples%2Fhierarchy.json).
-
-O parâmetro **adaptabrasil** especifica o conjunto de dados a ser acessado. Atualmente há dois conjuntos de dados: **Adapta Brasil** e **Riscos Climáticos**, que são selecionados por esse último parâmetro, respectivamente **adaptabrasil** e **riscos_climaticos**.
+Ele gerará um arquivo atualizado com 
 
 ## Colunas do CSV
 
-### id:
-id do ìndicador.
-
-### nome: 
-Nome do indicador.
+**id**: id do ìndicador.
+		  
+**nome**: nome do indicador.
 
 **url_mostra_mapas_na_tela**: Exibe o portal no browser de acordo com os parâmetros indicados.
 
@@ -101,8 +106,9 @@ _Ano_: Ano a que deverão corresponder os dados exibidos (2015).
 
 _Conjunto de dados_: (adaptabrasil)
 
-**url_faz_download_geometrias_dados**: faz o download de geometrias com seus dados associados, em diversos formatos:
-https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/1000/BR/null/2015/municipio/SHPz/adaptabrasil
+**url_faz_download_geometrias_dados**: faz o download de geometrias com seus dados associados, em diversos formatos.
+
+Exemplo: https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/1000/BR/null/2015/municipio/SHPz/adaptabrasil
 
 _Nome da API_: (fixo, _geometria/data_).
 
@@ -158,3 +164,12 @@ Valores:
 **unidade_medida**: unidade de medida dos valores do indicador.
 
 **cenários**: cenários possíveis para esse indicador.
+
+https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil
+
+### API de hierarquia
+
+Acessa a hierarquia de indicadores que compõe o site. Um exemplo do retornado por essa API pode ser visto [aqui](jsonsamples%2Fhierarchy.json).
+
+O parâmetro **adaptabrasil** especifica o conjunto de dados a ser acessado. Atualmente há dois conjuntos de dados: **Adapta Brasil** e **Riscos Climáticos**, que são selecionados por esse último parâmetro, respectivamente **adaptabrasil** e **riscos_climaticos**.
+
