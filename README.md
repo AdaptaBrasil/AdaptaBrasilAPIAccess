@@ -1,4 +1,4 @@
-# Como acessar a API da plataforma Adapta Brasil
+# Como acessar a API da plataforma AdaptaBrasil
 
 O que está aqui disponibilizado são recursos para se acessar os dados da plataforma usando-se scripts, automatizando a obtenção desses dados e possibilitando até que outros sites façam esse acesso de maneira dinâmica.
 
