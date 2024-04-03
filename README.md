@@ -25,25 +25,23 @@ python AdaptaBrasilAPIAccess.py --help
 Parâmetros:
   --help                         Mostra essa mensagem e sai.
   --base_url BASE_URL            URL base de uma versão do AdaptaBrasil.
-  --schema SCHEMA                Esquema a ser usado (adaptabrasil, impactos_economicos).
+  --schema SCHEMA                Esquema a ser usado. Atualmente só esta disponível o esquema adaptabrasil.
   --recorte RECORTE              Recorte a ser usado nas URLs.
   --resolucao RESOLUCAO          Resolução a ser usada nas URLs.
   --arquivo_saida ARQUIVO_SAIDA  Nome do arquivo destino (CSV).
 ```
 
-Ele gerará um arquivo atualizado com 
-
-## Colunas do CSV
+Ele gerará um arquivo atualizado com as seguintes colunas:
 
 **id**: id do ìndicador.
 		  
 **nome**: nome do indicador.
 
-**url_mostra_mapas_na_tela**: Exibe o portal no browser de acordo com os parâmetros indicados.
+**url_mostra_mapas_na_tela**: Exibe o portal no navegador de acordo com os parâmetros indicados.
 
-Exemplo: https://sistema.adaptabrasil.mcti.gov.br/5000/1/2015/null/BR/municipio/adaptabrasil: 
+Exemplo: https://sistema.adaptabrasil.mcti.gov.br/5000/1/2015/null/BR/municipio/adaptabrasil
 
-Parâmetros:
+Parâmetros (separados por / após gov.br na URL):
 
 _Indicador_: id do indicador, conforme pode ser obtido na hierarquia (5000, no exemplo).
 
@@ -54,15 +52,15 @@ Dado a ser exibido: formato na tela em que os dados serão exibidos (1, no exemp
     3: Evolução
     4: Tendência
 
-_Ano_: Ano a que deverão corresponder os dados exibidos (2015).
+_Ano_: Ano dos dados exibidos (2015).
 
 _Cenário_: id do cenário a ser exibido. Os ids dos cenários possíveis estão indicados na hierarquia. 
 
-_Recorte_: recorte a que corresponderão os dados exibidos (BR - Brasil). Os recortes possíveis estão indicados na hierarquia.
+_Recorte_: recorte a que corresponderão os dados exibidos (BR significa todo o Brasil). Os recortes possíveis estão indicados na hierarquia.
 
 _Resolução_: resolução a que corresponderão os dados exibidos (municipio). As resoluções possíveis estão indicadas na hierarquia.
 
-_Conjunto de dados_: (adaptabrasil)
+_Esquema_: O conjunto de setores estratégicos a ser acessado (atualmente o único disponível é o adaptabrasil)
 
 **url_obtem_dados_indicador**: Obtem os dados de um indicador associados a um recorte e uma resolução.
 
@@ -70,7 +68,7 @@ Exemplo: https://sistema.adaptabrasil.mcti.gov.br/api/mapa-dados/BR/municipio/10
 
 _Nome da API_: (fixo, mapa-dados).
 
-_Recorte_: recorte a que corresponderão os dados exibidos (BR - Brasil). Os recortes possíveis estão indicados na hierarquia.
+_Recorte_: recorte a que corresponderão os dados exibidos (BR). Os recortes possíveis estão indicados na hierarquia.
 
 _Resolução_: resolução a que corresponderão os dados exibidos (municipio). As resoluções possíveis estão indicadas na hierarquia.
 
@@ -80,7 +78,7 @@ _Ano_: Ano a que deverão corresponder os dados exibidos (2015).
 
 _Cenário_: id do cenário a ser exibido (null, no exemplo). Os ids dos cenários possíveis estão indicados na hierarquia. 
 
-_Conjunto de dados_: (adaptabrasil)
+_Esquema_: (adaptabrasil)
 
 **url_obtem_totais_evolucao_tendencia**: Obtém dados por faixa de valores de um determinado indicador monstrados nas telas de Totais, Evolução e Tendência do Adapta Brasil:
 
@@ -98,7 +96,7 @@ _Cenário_: id do cenário a ser exibido (null, no exemplo). Os ids dos cenário
 
 _Ano_: Ano a que deverão corresponder os dados exibidos (2015).
 
-_Conjunto de dados_: (adaptabrasil)
+_Esquema_: (adaptabrasil)
 
 **url_faz_download_geometrias_dados**: faz o download de geometrias com seus dados associados, em diversos formatos.
 
@@ -132,7 +130,7 @@ Formato de imagem disponível:
 
     PNG: png
 
-_Conjunto de dados_: (adaptabrasil)
+_Esquema_: (adaptabrasil)
 
 **descricao_simples**: descrição simplificada do que os dados desse indicador representam.
 
@@ -161,8 +159,6 @@ Valores:
 
 ### API de hierarquia
 
-https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil
+A API de hierarquia acessa todos os indicadores que compõe o site (sem os dados). Um exemplo do retornado por essa API pode ser visto [aqui](https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil).
 
-Acessa a hierarquia de indicadores que compõe o site. Um exemplo do retornado por essa API pode ser visto [aqui](https://sistema.adaptabrasil.mcti.gov.br/api/hierarquia/adaptabrasil).
-
-O parâmetro **adaptabrasil** especifica o conjunto de dados a ser acessado. Atualmente há dois conjuntos de dados: **Adapta Brasil** e **Riscos Climáticos**, que são selecionados por esse último parâmetro, respectivamente **adaptabrasil** e **riscos_climaticos**.
+O parâmetro **adaptabrasil** especifica o esquema de dados a ser acessado. Atualmente há apenas um esquema disponível, chamado **adaptabrasil**.
