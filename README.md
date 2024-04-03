@@ -1,26 +1,20 @@
 # Como acessar a API da plataforma AdaptaBrasil
 
-O que está aqui disponibilizado são recursos para se acessar os dados da plataforma usando-se scripts, automatizando a obtenção desses dados e possibilitando até que outros sites façam esse acesso de maneira dinâmica.
+Este repositório contem scripts para acessar os dados da plataforma AdaptaBrasil, automatizando a obtenção desses dados e possibilitando o acesso de maneira dinâmica.
 
-Há um script Python, [AdaptaBrasilAPIAccess.py](AdaptaBrasilAPIAccess.py), que gera URLs exemplo de cada API existente, ou pode ser usado o CSV [adaptaBrasilAPIEstrutura.csv](adaptaBrasilAPIEstrutura.csv) como exemplo, que contém as URLs já geradas para cada indicador. Como a plataforma é constantemente atualizada, é preferível que o script seja executado e a planilha, gerada com as últimas atualizações. As instruções e parâmetros para se rodar o script encontram-se abaixo.
+O script Python [AdaptaBrasilAPIAccess.py](AdaptaBrasilAPIAccess.py) gera um CSV com todos os indicadores da plataforma. Alternativamente pode ser usado o CSV [adaptaBrasilAPIEstrutura.csv](adaptaBrasilAPIEstrutura.csv), que contém as URLs já geradas para cada indicador. Como a plataforma é constantemente atualizada, este CSV pode estar desatualizado, sendo preferível executar o script toda vez que for baixar novos dados. As instruções e parâmetros para se executar o script encontram-se abaixo.
 
-As colunas do CSV gerado são separadas pelo caractere "|", em vez de vírgula ou ponto-e-vírgula como é usual. Isso porque esses caracteres aparecem nos textos da então optou-se pelo "|", que normalmente não é usado em textos.
-
-Quando abrir esse arquivo no Excel, indique o "|" como separador.
+As colunas do CSV gerado são separadas pelo caractere "|", em vez de vírgula ou ponto-e-vírgula. Quando abrir esse arquivo no Excel, indique o "|" como separador.
 
 ## Iniciando
 
-Para acessar os dados do Adapta usam-se URLs que especificam qual o tipo de dado a ser obtidos e algum tipo de filtro.
+Para acessar os dados do AdaptaBrasil são usadas URLs que especificam qual o dado a ser obtido, bem como alguma opção de filtro.
 
-Uma das maneiras de se obter essas URLs é navegar pela plataforma com o browser em modo depuração, buscar a aba Rede (Network) e observar as URLs acessadas:
+Uma das maneiras de se obter essas URLs é navegar pela plataforma com o browser em modo depuração, buscar a aba Rede (Network) do navegador e observar as URLs acessadas:
 
 ![img.png](chrome_debug.png)
 
-Estão indicados em vermelho as referências à URL chamada para obter dados para o preenchimento dos valores dessa tela.
-
-Se for clicado em na referência à URL (null na tela), será aberta uma outra aba do browser com os dados exibidos na tela.
-
-Os dados são retornados por default em formato JSON. Quando é especificado um formato, como no caso das URLs de download de dados, será feito um arquivo .zip contendo os dados no formato solicitado.
+Estão indicadas em vermelho as referências à URL chamada para obter dados para o preenchimento dos valores dessa tela. Se for clicado em na referência à URL (null na tela), será aberta uma outra aba do browser com os dados exibidos na tela. Os dados são retornados por default em formato JSON. Quando é especificado um formato, como no caso das URLs de download de dados, será feito um arquivo .zip contendo os dados no formato solicitado.
 
 Se a ideia for obter dados de muitos indicadores e/ou em diferentes formatos, a melhor opção é executar o script **adaptaBrasilAPIEstrutura.py**. Ele pode receber os seguintes parâmetros:
 
@@ -29,12 +23,12 @@ Parâmetros:
 python AdaptaBrasilAPIAccess.py --help
 
 Parâmetros:
-  --help                         mostra essa mensagem e sai.
+  --help                         Mostra essa mensagem e sai.
   --base_url BASE_URL            URL base de uma versão do AdaptaBrasil.
-  --schema SCHEMA                schema a ser usado (adaptabrasil, impactos_economicos).<br>
+  --schema SCHEMA                Esquema a ser usado (adaptabrasil, impactos_economicos).
   --recorte RECORTE              Recorte a ser usado nas URLs.
   --resolucao RESOLUCAO          Resolução a ser usada nas URLs.
-  --arquivo_saida ARQUIVO_SAIDA  Nome do arquivo destino (csv).
+  --arquivo_saida ARQUIVO_SAIDA  Nome do arquivo destino (CSV).
 ```
 
 Ele gerará um arquivo atualizado com 
