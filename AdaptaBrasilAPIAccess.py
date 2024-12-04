@@ -1,11 +1,12 @@
 import urllib.request, json
 import argparse
 import re
+import os
 
 def get_command_line_arguments():
     parser = argparse.ArgumentParser(description='Programa para obter metadados da API do AdaptaBrasil.')
     parser.add_argument('--base_url', type=str,
-                        default = 'https://sistema.adaptabrasil.mcti.gov.br/',
+                        default = 'https://sistema.adaptabrasil.mcti.gov.br',
                         help='URL base de uma versão do AdaptaBrasil.')
     parser.add_argument('--schema', type=str,
                         default='adaptabrasil',
@@ -19,6 +20,9 @@ def get_command_line_arguments():
     parser.add_argument('--arquivo_saida', type=str,
                         default = 'adaptaBrasilAPIEstrutura.csv',
                         help='Nome do arquivo destino (csv).')
+    parser.add_argument('--separador_csv', type=str,
+                        default = ',',
+                        help='Separador de colunas a ser usado no csv gerado.')
     return parser.parse_args()
 
 def if_none(value):
@@ -32,13 +36,13 @@ def cleanhtml(raw_html):
 
 if __name__ == '__main__':
     args = get_command_line_arguments()
-    url_hierarchy = f"{args.base_url}/api/hierarquia/{args.schema}"
+    url_hierarchy = os.path.join(args.base_url,'api/hierarquia',args.schema)
     with urllib.request.urlopen(url_hierarchy) as url, open(args.arquivo_saida,mode='w', encoding='utf-8') as csv_file:
         indicators = json.load(url)
         s = '\ufeff' # BOM code to preserve diacritics em Excel
-        s += 'id|nome|url_mostra_mapas_na_tela|url_obtem_dados_indicador|url_obtem_totais_evolucao_tendencia|url_faz_download_geometrias_dados|' \
-             'descricao_simples|descricao_completa|nivel|proporcao_direta|indicador_pai|' \
-             'anos|setor_estrategico|tipo_geometria|unidade_medida|cenarios\n'
+        s += f'id{args.separador_csv}nome{args.separador_csv}url_mostra_mapas_na_tela{args.separador_csv}url_obtem_dados_indicador{args.separador_csv}url_obtem_totais_evolucao_tendencia{args.separador_csv}url_faz_download_geometrias_dados{args.separador_csv}' \
+             f'descricao_simples{args.separador_csv}descricao_completa{args.separador_csv}nivel{args.separador_csv}proporcao_direta{args.separador_csv}indicador_pai{args.separador_csv}' \
+             f'anos{args.separador_csv}setor_estrategico{args.separador_csv}tipo_geometria{args.separador_csv}unidade_medida{args.separador_csv}cenarios\n'
         list_scenario = []
         seps = {}
         for indicator in indicators:
@@ -74,11 +78,11 @@ if __name__ == '__main__':
                 url_download = f"https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/{indicator['id']}/" \
                                f"{args.recorte}/null/{years[0]}/{args.resolucao}/SHPz/{args.schema}"
 
-                s += f"{indicator['id']}|{indicator['name']}|"
-                s += f"{url_show_map_on_the_site}|{url_getmapdata}|{url_gettotal_evolucao_tendencia}|{url_download}|" \
-                    f"{indicator['simple_description']}|{indicator['complete_description']}|{indicator['level']}|" \
-                    f"{if_none(indicator['pessimist'])}|{if_none(indicator['indicator_id_master'])}|{if_none(indicator['years'])}|" \
-                    f"{if_none(seps[indicator['sep_id']])}|{if_none(indicator['geometrytype']) if int(indicator['level']) > 1 else ''}|{if_none(indicator['measurement_unit'])}|" \
+                s += f"{indicator['id']}{args.separador_csv}{indicator['name']}{args.separador_csv}"
+                s += f"{url_show_map_on_the_site}{args.separador_csv}{url_getmapdata}{args.separador_csv}{url_gettotal_evolucao_tendencia}{args.separador_csv}{url_download}{args.separador_csv}" \
+                    f"{indicator['simple_description']}{args.separador_csv}{indicator['complete_description']}{args.separador_csv}{indicator['level']}{args.separador_csv}" \
+                    f"{if_none(indicator['pessimist'])}{args.separador_csv}{if_none(indicator['indicator_id_master'])}{args.separador_csv}{if_none(indicator['years'])}{args.separador_csv}" \
+                    f"{if_none(seps[indicator['sep_id']])}{args.separador_csv}{if_none(indicator['geometrytype']) if int(indicator['level']) > 1 else ''}{args.separador_csv}{if_none(indicator['measurement_unit'])}{args.separador_csv}" \
                     f"{if_none(list_scenario)}".replace('\r', ' ').replace('\n', ' ')
                 s += "\n"
         csv_file.write(s)
