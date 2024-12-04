@@ -16,7 +16,7 @@ Uma das maneiras de se obter essas URLs é navegar pela plataforma com o browser
 
 Estão indicadas em vermelho as referências à URL chamada para obter dados para o preenchimento dos valores dessa tela. Se for clicado em na referência à URL (null na tela), será aberta uma outra aba do browser com os dados exibidos na tela. Os dados são retornados por default em formato JSON. Quando é especificado um formato, como no caso das URLs de download de dados, será feito um arquivo .zip contendo os dados no formato solicitado.
 
-Se a ideia for obter dados de muitos indicadores e/ou em diferentes formatos, a melhor opção é executar o script **adaptaBrasilAPIEstrutura.py**. Ele pode receber os seguintes parâmetros:
+Se a ideia for obter dados de muitos indicadores e/ou em diferentes formatos, a melhor opção é executar o script [AdaptaBrasilAPIAccess.py](AdaptaBrasilAPIAccess.py). Ele pode receber os seguintes parâmetros:
 
 Parâmetros:
 ```commandline
