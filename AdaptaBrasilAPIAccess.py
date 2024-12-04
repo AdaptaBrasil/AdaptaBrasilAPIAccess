@@ -21,7 +21,7 @@ def get_command_line_arguments():
                         default = 'adaptaBrasilAPIEstrutura.csv',
                         help='Nome do arquivo destino (csv).')
     parser.add_argument('--separador_csv', type=str,
-                        default = ',',
+                        default = '|',
                         help='Separador de colunas a ser usado no csv gerado.')
     return parser.parse_args()
 
