@@ -100,7 +100,7 @@ _Esquema_: (adaptabrasil)
 
 **url_faz_download_geometrias_dados**: faz o download de geometrias com seus dados associados, em diversos formatos.
 
-Exemplo: https://sistema.adaptabrasil.dev.apps.rnp.br/api/geometria/data/1000/BR/null/2015/municipio/SHPz/adaptabrasil
+Exemplo: https://sistema.adaptabrasil.mcti.gov.br/api/geometria/data/1000/BR/null/2015/municipio/SHPz/adaptabrasil
 
 _Nome da API_: (fixo, _geometria/data_).
 
@@ -156,6 +156,62 @@ Valores:
 **unidade_medida**: unidade de medida dos valores do indicador.
 
 **cenários**: cenários possíveis para esse indicador.
+
+**url_obtem_dados_fatores_influenciadores**: Os valores dos indicadores com nível menor que 6 são compostos por indicadores de níveis abaixo.
+Esse serviço retorna a composição dos valores dos indicadores com base nos níveis seguintes
+
+Parâmetros:
+
+**clipping**: recorte do mapa. Alternativas de exemplo: "BR", "semiárido", "SE", "PE", "MG", "CE", "BA", "PI", "AL", "PB", "RN", "MA"
+
+**resolution**: resolução do mapa. Alternativas: "microrregiao", "mesorregiao", "municipio", "estado", "regiao"
+
+**indicator_id**: id do indicador a ser exibido
+
+**scenario_id**: 1 (Otimista), 2 (Pessimista) ou null quando o indicador não tiver essa cenários.
+
+**resolution_id**: id do objeto a ser exibido, conforme a resolução (county_id para a resolução município, microregion_id para a resolução microrregiao, macroregion_id para a resolução macrorregiao e state para a resolução estado).
+
+**esquema**: adaptabrasil
+
+Exemplo URL: https://sistema.adaptabrasil.mcti.gov.br/api/info/BR/municipio/2/5503/2020/null/adaptabrasil: 
+
+Exemplo saída:
+```json
+{
+  "id": "5463",
+  "name": "Apuí/AM",
+  "value": "0,17",
+  "nextlevel": [
+    {
+      "id": 5001,
+      "pessimist": 1,
+      "title": "Índice de Vulnerabilidade",
+      "simple_description": "Grau de suscetibilidade de um sistema socioecológico aos efeitos das mudanças climáticas, especificamente aquelas que resultam em seca",
+      "complete_description": "Grau de suscetibilidade a danos, com potencial para mudança ou transformação do sistema socioecológico, quando confrontado com uma ameaça. A vulnerabilidade está associada às situações de sensibilidade e capacidade adaptativa do sistema socioecológico às alterações climáticas (seca). Assim, o Índice de Vulnerabilidade é resultante da composição dos índices de Sensibilidade e Capacidade Adaptativa.\u003Cbr\u003E\u003Cbr\u003EFontes:\u003Cbr\u003EGALLOPÍN, G. C.. Linkages between vulnerability, resilience, and adaptive capacity. Global Environmental Change, v. 16, p. 293-303, 2006.\u003Cbr\u003EINTERGOVERNMENTAL PANEL ON CLIMATE CHANGE - IPCC. Climate Change 2014: Synthesis Report. Working Groups I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change [Core Writing Team, R.K. Pachauri and L.A. Meyer (eds.)]. IPCC, Geneva, Switzerland, 151 pp.",
+      "year": 2015,
+      "value": "0,60",
+      "valuecolor": "#FF8300",
+      "rangelabel": "Alto"
+    },
+    ...
+],
+  "lastlevel": [
+    {
+      "id": 5032,
+      "pessimist": 0,
+      "title": "Acesso ao Programa Garantia Safra",
+      "simple_description": "Nível de acesso ao Programa Garantia Safra por produtores rurais",
+      "complete_description": "O Programa Garantia Safra é um seguro destinado a agricultores de baixa renda (até um salário mínimo e meio) cadastrados no programa, que passam a receber o benefício quando o município em que moram comprova a perda de, pelo menos, 50% do conjunto das produções de feijão, milho, arroz, mandioca e algodão em razão de estiagem ou excesso hídrico. Indicador de capacidade adaptativa relacionado a manutenção da produção agropecuária, obtido pela multiplicação entre o inverso da magnitude de perda de produtividade dos produtos básicos (feijão, mandioca, milho e arroz), em módulo, entre os períodos 2006 a 2016 e 2014 a 2016, e a razão entre os agricultores beneficiados entre 2014 e 2016 e o número de estabelecimentos agropecuários com agricultura familiar em 2016, estimado a partir de dados populacionais rurais para o mesmo ano. Foi realizada uma padronização, onde se considerou três situações: 1) os municípios sem informação ou que não tiveram perda de produtividade agrícola no período analisado, receberam valores NA (Not Available); 2) os municípios que tiveram perdas e não foram beneficiados pelo seguro, receberam valor “zero”; e 3) os municípios que apresentaram perdas e foram contemplados pelo seguro safra, foram normalizados a partir do valor mínimo atribuído (0,30). Posteriormente, o valor normalizado resultante foi multiplicado pelo peso atribuído pelos especialistas considerando a relevância regional do mesmo à ameaça de seca. Os dados foram obtidos da Produção Agrícola Municipal (PAM), disponibilizado pelo Instituto Brasileiro de Geografia e Estatística (IBGE).\u003Cbr\u003E\u003Cbr\u003EFonte:\u003Cbr\u003ESistema de Informações e Análises sobre Impactos das Mudanças Climáticas - AdaptaBrasil MCTI.",
+      "year": 2010,
+      "value": "7,0"
+    },
+    ...
+  ],
+  "valuecolor": "#02C650",
+  "rangelabel": "Muito baixo"
+}
+```
 
 ### API de hierarquia
 
